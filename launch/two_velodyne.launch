@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<launch>
+
+  <!-- Namespace of the node -->
+  <!-- <arg name="namespace" default=""/> -->
+  <!-- Target frame id -->
+  <!-- <arg name="target_frame_id" default="BASE"/> -->
+  <arg name="target_frame_id" default="odom"/>
+
+  <!-- Input topic -->
+  <arg name="input1" default="/velodyne_pointsL_self_filtered"/>
+  <arg name="input2" default="/velodyne_pointsR_self_filtered"/>
+  <arg name="publish_only_first" default="true"/>
+  <!-- Output topic -->
+  <arg name="output" default="stitched_velodyne_points"/>
+
+  <!-- Scan to point cloud -->
+  <node name="pointcloud_stitching" pkg="pointcloud_stitching" type="pointcloud_stitching_node" respawn="true" output="screen">
+    <rosparam command="load"                        file="$(find pointcloud_stitching)/config/parameters.yaml"/>
+    <param name="target_frame_id"                   value="$(arg target_frame_id)"/>
+    <param name="subscribers/firstInput/topic"      value="$(arg input1)"/>
+    <param name="subscribers/secondInput/topic"     value="$(arg input2)"/>
+    <param name="publishers/stitchedCloud/topic"    value="$(arg output)"/>
+    <param name="publishOnlyFirst_"                 value="$(arg publish_only_first)"/>
+  </node>
+
+</launch>

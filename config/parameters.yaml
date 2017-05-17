@@ -1,0 +1,17 @@
+subscribers:
+  firstInput:
+    topic: /velodyne_points
+    queue_size: 1
+  secondInput:
+    topic: /velodyne_points
+    queue_size: 1
+
+publishers:
+  stitchedCloud:
+    topic: /stitched_velodyne_points
+    queue_size: 1
+    latch: true
+
+targetFrameId_: "odom"
+
+publishOnlyFirst_: false
