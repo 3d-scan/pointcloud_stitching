@@ -3,7 +3,7 @@ subscribers:
     topic: /velodyne_points
     queue_size: 1
   secondInput:
-    topic: /velodyne_points
+    topic: /velodyne_pointsL
     queue_size: 1
 
 publishers:
@@ -12,6 +12,6 @@ publishers:
     queue_size: 1
     latch: true
 
-targetFrameId_: "odom"
+targetFrameId_: "BASE"
 
 publishOnlyFirst_: false
